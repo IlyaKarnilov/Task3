@@ -1,0 +1,6 @@
+D:\task2\task3.exe
+D:\task2\task3.dll
+D:\task2\task3.deps.json
+D:\task2\task3.runtimeconfig.json
+D:\task2\task3.pdb
+D:\task2\BouncyCastle.Crypto.dll
