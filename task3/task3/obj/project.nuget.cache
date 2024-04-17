@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uL7VJcNPrG/5aKv6WyiuNGz2bjEL8C74MoYEeNnN+21E7sanhYe03w4Edf85fFuRfW9S9RavAvmeWSTslzcBFw==",
+  "dgSpecHash": "XZ3F6QV+83Xyp+/73vKFMrwi+OhU12T05mEnPC3faqSTR8kFr3COop1pMz6OE1oUJVrbUX8/GcfGLBSBR7YN4Q==",
   "success": true,
-  "projectFilePath": "D:\\task2\\task3\\task3\\task3.csproj",
+  "projectFilePath": "D:\\ts\\task3\\task3\\task3\\task3.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\consoletables\\2.6.1\\consoletables.2.6.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512"
   ],
   "logs": []

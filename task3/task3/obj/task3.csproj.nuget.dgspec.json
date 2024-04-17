@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\task2\\task3\\task3\\task3.csproj": {}
+    "D:\\ts\\task3\\task3\\task3\\task3.csproj": {}
   },
   "projects": {
-    "D:\\task2\\task3\\task3\\task3.csproj": {
+    "D:\\ts\\task3\\task3\\task3\\task3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\task2\\task3\\task3\\task3.csproj",
+        "projectUniqueName": "D:\\ts\\task3\\task3\\task3\\task3.csproj",
         "projectName": "task3",
-        "projectPath": "D:\\task2\\task3\\task3\\task3.csproj",
+        "projectPath": "D:\\ts\\task3\\task3\\task3\\task3.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\task2\\task3\\task3\\obj\\",
+        "outputPath": "D:\\ts\\task3\\task3\\task3\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,6 +50,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "ConsoleTables": {
+              "target": "Package",
+              "version": "[2.6.1, )"
+            },
             "Portable.BouncyCastle": {
               "target": "Package",
               "version": "[1.9.0, )"

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using task3;
 
 public class Program
 {
@@ -22,10 +23,11 @@ public class Program
         }
 
         Random random = new Random();
-        var hmacKey = GenerateHmacKey();
+        HmacGenerate hmacGenerate = new HmacGenerate();
+        var hmacKey = hmacGenerate.GenerateHmacKey();
         int computerMove = random.Next(0, args.Length);
         var compMoveVal = args[computerMove];
-        var hmac = CalculateHmac(compMoveVal, hmacKey);
+        var hmac = hmacGenerate.CalculateHmac(compMoveVal, hmacKey);
         Console.WriteLine($"HMAC: {hmac}");
 
         while(true){
@@ -39,13 +41,10 @@ public class Program
             Console.WriteLine("Enter your move: ");
             string input = Console.ReadLine();
             if (input == "?")
-            {
-                var table = GenerateTable(args);
+            {   
+                HelpTable helpTable = new HelpTable();
+                helpTable.GenerateTable(args);
                 Console.WriteLine("Table:");
-                foreach (var row in table)
-                {
-                    Console.WriteLine(string.Join("\t", row));
-                }
             }
             else if (input == "0")
             {
@@ -59,7 +58,8 @@ public class Program
                     move = move - 1;
                     if (move >= 0 && move <= args.Length)
                     {
-                        string winner = GetWinner(args, move, computerMove);
+                        GameRule gameRule = new GameRule();
+                        string winner = gameRule.GetWinner(args, move, computerMove);
                         Console.WriteLine($"Your move: {args[move]}");
                         Console.WriteLine($"Computer move: {args[computerMove]}");
                         Console.WriteLine(winner);
@@ -79,83 +79,5 @@ public class Program
             }
         }
         Console.ReadLine();
-    }
-
-    public static string GenerateHmacKey()
-    {
-        using (var rng = RandomNumberGenerator.Create())
-        {
-            byte[] key = new byte[32];
-            rng.GetBytes(key);
-            string hexKey = BitConverter.ToString(key).Replace("-", "").ToLower();
-            return hexKey;
-        }
-    }
-
-    public static string CalculateHmac(string move, string key)
-    {
-        using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(key)))
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(move);
-            byte[] hash = hmac.ComputeHash(bytes);
-            return BitConverter.ToString(hash).Replace("-", "").ToLower();
-        }
-    }
-
-    public static string GetWinner(string[] args, int userMove, int computerMove)
-    {
-        int n = args.Length;
-        int range = n / 2;
-
-        if (userMove == computerMove)
-        {
-            return "Draw";
-        }
-        else if (userMove > range)
-        {
-            int distance = userMove - range;
-            if (computerMove < distance || computerMove > userMove)
-            {
-                return "You Win!";
-            }
-            else
-            {
-                return "You Lose!";
-            }
-        }
-        else if ((userMove + 1) % n <= computerMove && computerMove <= (userMove + range) % n ||
-                 (userMove + 1 - n) <= computerMove && computerMove <= (userMove + range - n))
-        {
-            return "You Win!";
-        }
-        else
-        {
-            return "You Lose!";
-        }
-    }
-
-    public static List<List<string>> GenerateTable(string[] args)
-    {
-        var table = new List<List<string>>();
-        int columnWidth = Math.Max(10, args.Max(s => s.Length) + 2);
-
-        var header = new List<string> { "Moves".PadRight(columnWidth) };
-        foreach (var move in args)
-        {
-            header.Add(move.PadRight(columnWidth));
-        }
-        table.Add(header);
-
-        for (int i = 0; i < args.Length; i++)
-        {
-            var row = new List<string> { args[i].PadRight(columnWidth) };
-            for (int j = 0; j < args.Length; j++)
-            {
-                string winner = GetWinner(args, i, j);
-                row.Add(winner.PadRight(columnWidth));
-            }
-            table.Add(row);
-        }
-        return table;
     }
 }
